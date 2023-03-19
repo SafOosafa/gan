@@ -46,7 +46,7 @@ os.makedirs(opt.out, exist_ok=True)
 
 # Initialize generator and discriminator
 model = Generator()
-model.load_state_dict(torch.load(opt.checkpoint, map_location=torch.device('cpu')), strict=True)
+model.load_state_dict(torch.load(opt.checkpoint), strict=True)
 model = model.eval()
 
 # Initialize variables
