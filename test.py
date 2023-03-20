@@ -35,9 +35,9 @@ import time
 parser = argparse.ArgumentParser()
 parser.add_argument("--n_cpu", type=int, default=16, help="number of cpu threads to use during batch generation")
 parser.add_argument("--batch_size", type=int, default=1, help="size of the batches")
-parser.add_argument("--checkpoint", type=str, default='./checkpoints/pretrained.pth', help="checkpoint path")
-parser.add_argument("--data_path", type=str, default='./data/sample_list.txt', help="path to dataset list file")
-parser.add_argument("--out", type=str, default='./dump', help="output folder")
+parser.add_argument("--checkpoint", type=str, default='checkpoints/pretrained.pth', help="checkpoint path")
+parser.add_argument("--data_path", type=str, default='data/sample_list.txt', help="path to dataset list file")
+parser.add_argument("--out", type=str, default='dump', help="output folder")
 opt = parser.parse_args()
 print(opt)
 
@@ -81,12 +81,12 @@ def main():
         real_nodes = np.where(nds.detach().cpu()==1)[-1]
         graph = [nds, eds]
         true_graph_obj, graph_im = draw_graph([real_nodes, eds.detach().cpu().numpy()])
-        graph_im.save('./{}/graph_{}.png'.format(opt.out, i)) # save graph
+        graph_im.save('{}/graph_{}.png'.format(opt.out, i)) # save graph
 
         # add room types incrementally
         _types = sorted(list(set(real_nodes)))
         selected_types = [_types[:k+1] for k in range(10)]
-        os.makedirs('./{}/'.format(opt.out), exist_ok=True)
+        os.makedirs('{}/'.format(opt.out), exist_ok=True)
         _round = 0
         
         # initialize layout
@@ -94,7 +94,7 @@ def main():
         masks = _infer(graph, model, state)
         im0 = draw_masks(masks.copy(), real_nodes)
         im0 = torch.tensor(np.array(im0).transpose((2, 0, 1)))/255.0 
-        # save_image(im0, './{}/fp_init_{}.png'.format(opt.out, i), nrow=1, normalize=False) # visualize init image
+        # save_image(im0, '{}/fp_init_{}.png'.format(opt.out, i), nrow=1, normalize=False) # visualize init image
 
         # generate per room type
         for _iter, _types in enumerate(selected_types):
@@ -106,7 +106,7 @@ def main():
         # save final floorplans
         imk = draw_masks(masks.copy(), real_nodes)
         imk = torch.tensor(np.array(imk).transpose((2, 0, 1)))/255.0 
-        save_image(imk, './{}/fp_final_{}.png'.format(opt.out, i), nrow=1, normalize=False)
+        save_image(imk, '{}/fp_final_{}.png'.format(opt.out, i), nrow=1, normalize=False)
         
 if __name__ == '__main__':
     main()
