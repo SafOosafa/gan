@@ -1,6 +1,6 @@
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/45012.json
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/45161.json
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/36233.json
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/19307.json
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/7513.json
-C:\Users\s.salem\Documents\houseganpp-main\houseganpp-main\data\json/18477.json
+/content/gan/data/json/45012.json
+/content/gan/data/json/45161.json
+/content/gan/data/json/36233.json
+/content/gan/data/json/19307.json
+/content/gan/data/json/7513.json
+/content/gan/data/json/18477.json
